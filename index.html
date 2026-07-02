@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Brush-Up — Mario Tristan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            aws: { navy: '#232F3E', orange: '#FF9900', dark: '#1a2332' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #232F3E; }
+    .card-done { opacity: 0.6; }
+    .tab-active { border-bottom: 3px solid #FF9900; color: #FF9900; }
+  </style>
+</head>
+<body class="text-white min-h-screen font-sans">
+
+  <!-- Header -->
+  <header class="bg-aws-dark border-b border-white/10 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight">
+        <span class="text-aws-orange">AWS</span> Brush-Up
+      </h1>
+      <p class="text-white/60 text-sm">Mario Tristan · 2-Week Training Plan</p>
+    </div>
+    <div class="text-right">
+      <p class="text-sm text-white/60 mb-1"><span id="count">0</span> / 14 days completed</p>
+      <div class="w-48 bg-white/10 rounded-full h-3">
+        <div id="progress-bar" class="bg-aws-orange h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tab switcher -->
+  <nav class="bg-aws-dark border-b border-white/10 px-6 flex gap-8">
+    <button id="tab-week1" onclick="showWeek(1)"
+      class="py-4 text-sm font-semibold uppercase tracking-wider tab-active transition-colors">
+      Week 1 — Core Services
+    </button>
+    <button id="tab-week2" onclick="showWeek(2)"
+      class="py-4 text-sm font-semibold uppercase tracking-wider text-white/50 hover:text-white transition-colors">
+      Week 2 — Architecture &amp; Patterns
+    </button>
+  </nav>
+
+  <!-- Day card grids -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div id="week1" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+    <div id="week2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 hidden"></div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/days.js"></script>
+  <script>
+    function showWeek(n) {
+      document.getElementById('week1').classList.toggle('hidden', n !== 1);
+      document.getElementById('week2').classList.toggle('hidden', n !== 2);
+      document.getElementById('tab-week1').classList.toggle('tab-active', n === 1);
+      document.getElementById('tab-week1').classList.toggle('text-white/50', n !== 1);
+      document.getElementById('tab-week2').classList.toggle('tab-active', n === 2);
+      document.getElementById('tab-week2').classList.toggle('text-white/50', n !== 2);
+    }
+
+    function updateProgress() {
+      const n = AppProgress.completedCount();
+      document.getElementById('count').textContent = n;
+      document.getElementById('progress-bar').style.width = `${(n / 14) * 100}%`;
+    }
+
+    document.addEventListener('progress-changed', updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
