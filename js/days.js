@@ -161,7 +161,7 @@ const DAYS = [
     day: 14, week: 2,
     title: 'Talking AWS in Client Meetings',
     why: 'The synthesis day — turn two weeks of knowledge into client-ready language.',
-    video: { label: 'How to Talk Cloud with Business Stakeholders (20 min)', url: 'https://www.youtube.com/watch?v=a9__D53WsUs' },
+    video: { label: 'How to Talk Cloud with Non-Technical Stakeholders (18 min)', url: 'https://www.youtube.com/watch?v=M988_fsOSWo' },
     reading: { label: 'AWS Executive Insights (AWS Blog)', url: 'https://aws.amazon.com/executive-insights/' },
     takeaways: [
       'Lead with business outcomes, not service names: "resilient" not "multi-AZ", "cost-optimized" not "Savings Plans".',
